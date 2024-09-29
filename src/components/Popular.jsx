@@ -6,17 +6,25 @@ import "@splidejs/react-splide/dist/css/splide.min.css";
 
 export default function Popular() {
   const [popular, setPopular] = useState([]);
+
   useEffect(() => {
     getPopular();
   }, []);
 
   const getPopular = async () => {
-    const api = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=fcacea56258149b9a9fc1de729daa7b8&number=9`
-    );
-    const data = await api.json();
-    console.log(data);
-    setPopular(data.recipes);
+    const check = localStorage.getItem("popular");
+
+    if (check) {
+      setPopular(JSON.parse(check));
+    } else {
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=fcacea56258149b9a9fc1de729daa7b8&number=9`
+      );
+      const data = await api.json();
+      localStorage.setItem("popular", JSON.stringify(data.recipes));
+      console.log(data);
+      setPopular(data.recipes);
+    }
   };
 
   return (
@@ -34,7 +42,7 @@ export default function Popular() {
         >
           {popular.map((recipe) => {
             return (
-              <SplideSlide>
+              <SplideSlide key={recipe.id}>
                 <Card>
                   <p>{recipe.title}</p>
                   <img src={recipe.image} alt={recipe.title} />
