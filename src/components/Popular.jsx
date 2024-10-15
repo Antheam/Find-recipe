@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import React from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/dist/css/splide.min.css";
+// import "@splidejs/react-splide/dist/css/splide.min.css";
+import "@splidejs/splide/css";
 
 export default function Popular() {
   const [popular, setPopular] = useState([]);

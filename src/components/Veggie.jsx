@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/dist/css/splide.min.css";
+// import "@splidejs/react-splide/dist/css/splide.min.css";
+import "@splidejs/splide/css";
 
 function Veggie() {
   const [veggie, setVeggie] = useState([]);
